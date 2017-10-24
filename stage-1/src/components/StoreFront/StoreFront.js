@@ -9,13 +9,14 @@ class StoreFront extends Component {
         this.state = {
             products: []
         }
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     componentDidMount() {
         axios.get("https://practiceapi.devmountain.com/products/")
             .then((response) => {
                 this.setState({
-                    products: response
+                    products: response.data
                 })
             })
     }
@@ -31,7 +32,7 @@ class StoreFront extends Component {
                     <button onClick={() => this.props.addToShoppingCart(element)}>Purchase!</button>
                 </div>
             )
-        })
+        });
         return (
             <div className="storefront-container">
                 {productDisplay}
